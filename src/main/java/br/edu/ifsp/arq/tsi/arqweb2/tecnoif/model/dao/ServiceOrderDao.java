@@ -1,5 +1,6 @@
 package br.edu.ifsp.arq.tsi.arqweb2.tecnoif.model.dao;
 
+import br.edu.ifsp.arq.tsi.arqweb2.tecnoif.model.Payment;
 import br.edu.ifsp.arq.tsi.arqweb2.tecnoif.model.ServiceOrder;
 import br.edu.ifsp.arq.tsi.arqweb2.tecnoif.model.Status;
 import br.edu.ifsp.arq.tsi.arqweb2.tecnoif.model.User;
@@ -19,10 +20,10 @@ public class ServiceOrderDao {
 		this.dataSource = dataSource;
 	}
 	
-	public Boolean save(ServiceOrder serviceOrder, User user){
+	public Boolean save(ServiceOrder serviceOrder, User user, Payment payment){
 		String sql = "INSERT INTO service_order (description, status, emission_date, "
-				+ "finalization_date, price, notes, id_user)"
-				+ " VALUES (?,?,?,?,?,?,?)";
+				+ "finalization_date, price, notes, id_user, id_payment)"
+				+ " VALUES (?,?,?,?,?,?,?,?)";
 		try(Connection conn = dataSource.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(sql)){
 			ps.setString(1, serviceOrder.getDescription());
@@ -32,6 +33,7 @@ public class ServiceOrderDao {
 			ps.setDouble(5, serviceOrder.getPrice());
 			ps.setString(6, serviceOrder.getNotes());
 			ps.setLong(7, user.getId());
+			ps.setLong(8, payment.getId());
 			ps.executeUpdate();
 		}catch (SQLException e) {
 			throw new RuntimeException("Erro durante a escrita no BD", e);

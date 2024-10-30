@@ -16,8 +16,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link href="css/errors.css" rel="stylesheet">
-<link rel="stylesheet" href="css/home.css">
+<link href="css/styles.css" rel="stylesheet">
 <title>TecnoIF - Cadastrar Tipo de Pagemento</title>
 </head>
 <body>
@@ -39,8 +38,8 @@
 				<h1 class="text-center">Cadastrar Tipo de Pagamento</h1>
 
 				<div class="mb-2">
-					<label for="paymentType">Tipo de Pagamento</label>
-					<input type="text" name="paymentType" id="paymentType" class="form-control" minlength="3" maxlength="50">
+					<label for="paymentType">Tipo de Pagamento*</label>
+					<input type="text" name="paymentType" id="paymentType" class="form-control" minlength="3" maxlength="50" required="required">
 					<span id="0"></span>
 				</div>
 

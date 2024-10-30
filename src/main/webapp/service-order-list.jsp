@@ -16,8 +16,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link href="css/errors.css" rel="stylesheet">
-<link rel="stylesheet" href="css/home.css">
+<link href="css/styles.css" rel="stylesheet">
 <title>TecnoIF - Listar Ordem de Serviço</title>
 </head>
 <body>
@@ -25,6 +24,15 @@
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
 		<div class="col-lg-6 offset-lg-3 col-sm-12">
+
+			<c:if test="${errorMessage != null}">
+				<div class="alert alert-danger alert-dismissible fade show"
+					 role="alert">
+						${errorMessage}
+					<button type="button" class="btn-close" data-bs-dismiss="alert"
+							aria-label="Close"></button>
+				</div>
+			</c:if>
 
 			<h1 class="text-center">Listar Ordem de Serviço</h1>
 

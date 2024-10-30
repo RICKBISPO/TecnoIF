@@ -16,8 +16,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link href="css/errors.css" rel="stylesheet">
-<link rel="stylesheet" href="css/home.css">
+<link href="css/styles.css" rel="stylesheet">
 <title>TecnoIF - Cadastrar Ordem de Serviço</title>
 </head>
 <body>
@@ -55,27 +54,36 @@
 				</div>
 
 				<div class="mb-2">
+					<label for="paymentType">Forma de Pagamento*</label>
+					<select class="form-select" aria-label="Default select example" id="paymentType" name="paymentType">
+						<c:forEach items="${resultList}" var="payment">
+							<option value="${payment.paymentType}">${payment.paymentType}</option>
+						</c:forEach>
+					</select> <span id="2"></span>
+				</div>
+
+				<div class="mb-2">
 					<label for="emissionDate">Data de Emissão*</label> <input type="date"
 						name="emissionDate" id="emissionDate" class="form-control" required="required"> <span
-						id="2"></span>
+						id="3"></span>
 				</div>
 
 				<div class="mb-2">
 					<label for="finalizationDate">Data de Finalização*</label> <input type="date"
 						name="finalizationDate" id="finalizationDate" class="form-control" required="required"> <span
-						id="3"></span>
+						id="4"></span>
 				</div>
 
 				<div class="mb-2">
 					<label for="price">Preço*</label> <input type="text"
 						name="price" id="price" class="form-control" minlength="3"
-						maxlength="50" required="required"> <span id="4"></span>
+						maxlength="50" required="required"> <span id="5"></span>
 				</div>
 
 				<div class="mb-2">
 					<label for="notes">Observações</label> <input type="text"
 						name="notes" id="notes" class="form-control" minlength="3"
-						maxlength="50"> <span id="5"></span>
+						maxlength="50"> <span id="6"></span>
 				</div>
 
 				<div class="mb-2">
@@ -90,6 +98,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
+	<script src="js/validate-fields.js"></script>
 </body>
 </html>
 

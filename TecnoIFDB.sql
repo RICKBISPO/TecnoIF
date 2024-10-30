@@ -18,8 +18,12 @@ CREATE TABLE address (
                          city VARCHAR(100) NOT NULL,
                          state VARCHAR(100) NOT NULL,
                          id_user BIGINT NOT NULL,
-                         FOREIGN KEY (id_user)
-                             REFERENCES user(id)
+                         FOREIGN KEY (id_user) REFERENCES user(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE payment (
+                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                         payment_type VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE service_order (
@@ -31,14 +35,10 @@ CREATE TABLE service_order (
                                price DECIMAL(20,2) NOT NULL,
                                notes VARCHAR(50),
                                id_user BIGINT NOT NULL,
-                               FOREIGN KEY (id_user)
-                                   REFERENCES user(id)
+                               id_payment BIGINT NOT NULL,
+                               FOREIGN KEY (id_user) REFERENCES user(id),
+                               FOREIGN KEY (id_payment) REFERENCES payment(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE payment (
-                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                         payment_type VARCHAR(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO tecnoif.user (name, email, telephone, cpf)
+INSERT INTO user (name, email, telephone, cpf)
 VALUES ('Suporte', 'tecnoif@gmail.com', '16999999999', '000000');

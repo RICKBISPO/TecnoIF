@@ -17,7 +17,6 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
-<link href="css/errors.css" rel="stylesheet">
 <title>TecnoIF - Página de Cadastro de Usuário</title>
 </head>
 <body>

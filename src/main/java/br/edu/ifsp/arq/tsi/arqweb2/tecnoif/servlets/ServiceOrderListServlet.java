@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 @WebServlet("/serviceOrderList")
 public class ServiceOrderListServlet extends HttpServlet{
@@ -30,8 +32,12 @@ public class ServiceOrderListServlet extends HttpServlet{
 
 		ServiceOrderDao serviceOrderDao = new ServiceOrderDao(DataSourceSearcher.getInstance().getDataSource());
 
-		if(serviceOrderDao.getAllServiceOrders().isPresent()) {
-			req.setAttribute("resultList", serviceOrderDao.getAllServiceOrders().get());
+		var serviceOrders = serviceOrderDao.getAllServiceOrders();
+
+		if(serviceOrders.isPresent() && !serviceOrders.get().isEmpty()) {
+			req.setAttribute("resultList", serviceOrders);
+		} else {
+			req.setAttribute("errorMessage", "Nenhuma ordem de serviço encontrada");
 		}
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/service-order-list.jsp");
