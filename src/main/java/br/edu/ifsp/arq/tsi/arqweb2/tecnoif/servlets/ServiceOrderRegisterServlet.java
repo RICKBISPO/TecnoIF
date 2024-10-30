@@ -37,7 +37,7 @@ public class ServiceOrderRegisterServlet extends HttpServlet{
 		var payments = paymentDao.getAllPayments();
 
 		if (payments.isPresent()) {
-			req.setAttribute("resultList", payments);
+			req.setAttribute("resultList", payments.get());
 		}
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/service-order-register.jsp");

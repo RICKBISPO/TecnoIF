@@ -35,7 +35,7 @@ public class ServiceOrderListServlet extends HttpServlet{
 		var serviceOrders = serviceOrderDao.getAllServiceOrders();
 
 		if(serviceOrders.isPresent() && !serviceOrders.get().isEmpty()) {
-			req.setAttribute("resultList", serviceOrders);
+			req.setAttribute("resultList", serviceOrders.get());
 		} else {
 			req.setAttribute("errorMessage", "Nenhuma ordem de serviço encontrada");
 		}

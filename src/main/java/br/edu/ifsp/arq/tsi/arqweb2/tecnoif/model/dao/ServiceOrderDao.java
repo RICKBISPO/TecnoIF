@@ -46,8 +46,8 @@ public class ServiceOrderDao {
 		String sql = "SELECT * FROM service_order";
 		Optional<List<ServiceOrder>> optional = Optional.empty();
 		try(Connection conn = dataSource.getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql)){
-			try (ResultSet rs = ps.executeQuery()) {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery()){
 				List<ServiceOrder> serviceOrders = new ArrayList<>();
 				while(rs.next()) {
 					ServiceOrder serviceOrder = new ServiceOrder();
@@ -61,7 +61,6 @@ public class ServiceOrderDao {
 					serviceOrders.add(serviceOrder);
 				}
 				optional = Optional.of(serviceOrders);
-			}
 		}catch (SQLException e) {
 			throw new RuntimeException("Erro durante a leitura no BD", e);
 		}

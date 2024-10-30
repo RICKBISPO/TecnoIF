@@ -21,7 +21,7 @@ public class ValidateFields {
                         return false;
                     }
                 } else if (value instanceof Double) {
-                    if ((Double) value <= 0.0) {
+                    if ((Double) value < 0.0) {
                         return false;
                     }
                 }

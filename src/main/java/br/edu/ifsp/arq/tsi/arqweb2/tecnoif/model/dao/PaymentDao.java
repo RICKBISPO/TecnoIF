@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ public class PaymentDao {
     }
 
     public Optional<Payment> getPaymentByPaymentType(String paymentType) {
-        String sql = "SELECT payment_type FROM payment WHERE payment_type=?";
+        String sql = "SELECT id, payment_type FROM payment WHERE payment_type=?";
         Optional<Payment> optional = Optional.empty();
         try(Connection conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)){
@@ -45,7 +46,8 @@ public class PaymentDao {
             try(ResultSet rs = ps.executeQuery()) {
                 if(rs.next()) {
                     Payment payment = new Payment();
-                    payment.setPaymentType(rs.getString(1));
+                    payment.setId(rs.getLong(1));
+                    payment.setPaymentType(rs.getString(2));
                     optional = Optional.of(payment);
                 }
             }
@@ -61,11 +63,13 @@ public class PaymentDao {
         try(Connection conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery()){
+            List<Payment> payments = new ArrayList<>();
             while(rs.next()) {
                 Payment payment = new Payment();
                 payment.setPaymentType(rs.getString(1));
-                optional.get().add(payment);
+                payments.add(payment);
             }
+            optional = Optional.of(payments);
         }catch (SQLException e) {
             throw new RuntimeException("Erro durante a consulta no BD", e);
         }
