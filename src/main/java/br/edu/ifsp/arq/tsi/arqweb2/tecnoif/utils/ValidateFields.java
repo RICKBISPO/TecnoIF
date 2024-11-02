@@ -17,7 +17,7 @@ public class ValidateFields {
                 Object value = getter.invoke(obj);
 
                 if (value instanceof String) {
-                    if (((String) value).isEmpty()) {
+                    if (((String) value).trim().isEmpty()) {
                         return false;
                     }
                 } else if (value instanceof Double) {
