@@ -12,6 +12,7 @@ public class User implements Serializable {
 	private String email;
 	private String telephone;
 	private String cpf;
+	private String role;
 
 	public Long getId() {
 		return id;
@@ -43,6 +44,12 @@ public class User implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public int hashCode() {
@@ -69,6 +76,7 @@ public class User implements Serializable {
 				", email='" + email + '\'' +
 				", telephone='" + telephone + '\'' +
 				", cpf='" + cpf + '\'' +
+				", role='" + role + '\'' +
 				'}';
 	}
 

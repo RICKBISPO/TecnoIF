@@ -33,11 +33,10 @@ public class LoginServlet extends HttpServlet{
 		
 		UserDao userDao = new UserDao(DataSourceSearcher.getInstance().getDataSource());
 
-		Optional<User> userByEmail = userDao.getUserByEmail(email);
 		Optional<User> userByCpf = userDao.getUserByCpf(cpf);
+		User user = (User) userByCpf.get();
 
-		if(userByEmail.isPresent() && userByCpf.isPresent()) {
-			User user = userByEmail.get();
+		if(user.getEmail().equals(email) && user.getCpf().equals(cpf)) {
 			HttpSession session = req.getSession();
 			session.setMaxInactiveInterval(600);
 			session.setAttribute("user", user);

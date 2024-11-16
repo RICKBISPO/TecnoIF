@@ -16,6 +16,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="icon" href="img/tecnoif-logo.ico" type="image/x-icon">
 <link href="css/styles.css" rel="stylesheet">
 <title>TecnoIF - Listar Ordem de Serviço</title>
 </head>

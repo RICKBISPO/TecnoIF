@@ -68,6 +68,34 @@ public class ServiceOrderDao {
 		return optional;
 	}
 
+	public Optional<List<ServiceOrder>> getServiceOrdersByUser(User user) {
+		String sql = "SELECT * FROM service_order WHERE id_user = ?";
+		Optional<List<ServiceOrder>> optional = Optional.empty();
+		try(Connection conn = dataSource.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql)){
+			ps.setLong(1, user.getId());
+			try (ResultSet rs = ps.executeQuery()) {
+				List<ServiceOrder> serviceOrders = new ArrayList<>();
+				while(rs.next()) {
+					ServiceOrder serviceOrder = new ServiceOrder();
+					serviceOrder.setId(rs.getLong("id"));
+					serviceOrder.setDescription(rs.getString("description"));
+					serviceOrder.setStatus(Status.valueOf(rs.getString("status")));
+					serviceOrder.setEmissionDate(rs.getDate("emission_date").toLocalDate());
+					serviceOrder.setFinalizationDate(rs.getDate("finalization_date").toLocalDate());
+					serviceOrder.setPrice(rs.getDouble("price"));
+					serviceOrder.setNotes(rs.getString("notes"));
+					serviceOrders.add(serviceOrder);
+				}
+				optional = Optional.of(serviceOrders);
+			}
+		}catch (SQLException e) {
+			throw new RuntimeException("Erro durante a leitura no BD", e);
+		}
+
+		return optional;
+	}
+
 	public Optional<ServiceOrder> getServiceOrderById(Long id) {
 		String sql = "SELECT * FROM service_order WHERE id = ?";
 		Optional<ServiceOrder> optional = Optional.empty();

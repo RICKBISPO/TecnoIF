@@ -65,7 +65,7 @@ public class UserDao {
 	}
 
 	public Optional<User> getUserByCpf(String cpf) {
-		String sql = "SELECT id, name, email FROM user WHERE cpf=?";
+		String sql = "SELECT id, name, email, cpf, role FROM user WHERE cpf=?";
 		Optional<User> optional = Optional.empty();
 		try (Connection con = dataSource.getConnection();
 			 PreparedStatement ps = con.prepareStatement(sql)) {
@@ -76,6 +76,8 @@ public class UserDao {
 					user.setId(rs.getLong(1));
 					user.setName(rs.getString(2));
 					user.setEmail(rs.getString(3));
+					user.setCpf(rs.getString(4));
+					user.setRole(rs.getString(5));
 					optional = Optional.of(user);
 				}
 			}
